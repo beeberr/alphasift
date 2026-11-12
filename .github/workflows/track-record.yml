@@ -1,5 +1,6 @@
 name: Track record
 
+# Stock ScanNet Pro consumes the published summary from the track-record branch.
 # Every trading day after the close: run each built-in strategy with --no-llm
 # --save-run, commit the saved runs to the track-record branch, evaluate T+N
 # against the market benchmark, and publish the dashboard to GitHub Pages.
