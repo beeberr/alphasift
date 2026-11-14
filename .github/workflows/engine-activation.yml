@@ -1,0 +1,27 @@
+name: AlphaSift Engine - Standalone Activation
+
+on:
+  workflow_dispatch:
+    inputs:
+      session:
+        description: "Market session to screen"
+        required: true
+        type: choice
+        options: [asia, us, rebuild]
+        default: asia
+      markets:
+        description: "Optional comma-separated subset, e.g. cn,hk or us"
+        required: false
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  activate-alphasift:
+    name: Run AlphaSift independently
+    uses: ./.github/workflows/track-record.yml
+    with:
+      session: ${{ inputs.session }}
+      markets: ${{ inputs.markets }}
