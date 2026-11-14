@@ -6,6 +6,18 @@ name: Track record
 # against the market benchmark, and publish the dashboard to GitHub Pages.
 
 on:
+  workflow_call:
+    inputs:
+      session:
+        description: "asia, us, or rebuild"
+        required: false
+        type: string
+        default: "asia"
+      markets:
+        description: "Optional comma-separated market subset"
+        required: false
+        type: string
+        default: ""
   push:
     branches: [main]
     paths:
