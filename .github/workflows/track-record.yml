@@ -118,6 +118,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+          # The repository-wide .gitignore excludes data/; force-stage only immutable run inputs.
+          git add -f data/runs/
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -q -m "track: ${{ steps.session.outputs.session }} $(TZ=Asia/Shanghai date +%F)"
           git push origin HEAD:track-record
