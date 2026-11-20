@@ -97,4 +97,5 @@ def test_track_record_workflow_force_stages_saved_runs():
     workflow = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "track-record.yml"
     content = workflow.read_text(encoding="utf-8")
 
-    assert "git add -f data/runs/" in content
+    assert "find data/runs -type f -name '*.json'" in content
+    assert "xargs -0 -r git add -f --" in content
