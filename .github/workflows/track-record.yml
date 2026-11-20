@@ -57,7 +57,7 @@ jobs:
     permissions:
       contents: write
     env:
-      # Caches and source health stay out of git; only runs, logs and site data are committed.
+      # Caches, source health and logs stay out of git; saved runs and site data are committed.
       ALPHASIFT_FALLBACK_SNAPSHOT_PATH: ${{ github.workspace }}/state/snapshot.last_good.json
       ALPHASIFT_SOURCE_HEALTH_PATH: ${{ github.workspace }}/state/source_health.json
       ALPHASIFT_DAILY_HISTORY_CACHE_DIR: ${{ github.workspace }}/state/daily_history
@@ -118,8 +118,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          # The repository-wide .gitignore excludes data/; force-stage only immutable run inputs.
-          git add -f data/runs/
+          # The repository-wide .gitignore excludes data/; stage only saved run JSON, never caches or logs.
+          if [ -d data/runs ]; then
+            find data/runs -type f -name '*.json' -print0 | xargs -0 -r git add -f --
+          fi
           if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
           git commit -q -m "track: ${{ steps.session.outputs.session }} $(TZ=Asia/Shanghai date +%F)"
           git push origin HEAD:track-record
