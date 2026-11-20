@@ -1,0 +1,38 @@
+{
+  "strategy": "volume_breakout",
+  "market": "cn",
+  "strategy_version": "1.2",
+  "strategy_category": "trend",
+  "snapshot_count": 5572,
+  "after_filter_count": 0,
+  "picks": [],
+  "run_id": "0851e84ea1db",
+  "llm_ranked": false,
+  "llm_market_view": "",
+  "llm_selection_logic": "",
+  "llm_portfolio_risk": "",
+  "llm_coverage": null,
+  "llm_parse_errors": [],
+  "degradation": [
+    "Daily K-line enrichment attempted 17 candidates, succeeded 17 of 17 snapshot-filtered candidates",
+    "Daily K-line sources: sina=17",
+    "Daily K-line quality flags: fallback_errors=1",
+    "Daily K-line source ordering: daily source order adjusted by health: sina,akshare,baostock,tencent",
+    "Daily K-line source health: tencent failures=1",
+    "Daily hard-filter rejections: require_price_above_ma20 removed 9 (17->8); signal_score_min removed 2 (8->6); breakout_20d_pct_min removed 6 (6->0)",
+    "No candidates after daily hard filter"
+  ],
+  "snapshot_source": "efinance",
+  "source_errors": [],
+  "deep_analysis_requested": false,
+  "post_analyzers": [
+    "scorecard"
+  ],
+  "daily_enriched": true,
+  "daily_enrich_count": 17,
+  "risk_enabled": true,
+  "portfolio_diversity_enabled": true,
+  "portfolio_concentration_notes": [],
+  "saved_path": "track/data/runs/0851e84ea1db.json",
+  "created_at": "2026-11-20T06:42:20.399024+00:00"
+}
