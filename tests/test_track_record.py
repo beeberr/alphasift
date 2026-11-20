@@ -90,3 +90,12 @@ def test_build_writes_summary_days_and_readme(tmp_path, monkeypatch):
     assert summary["days"] == [{"date": "2026-10-08", "runs": 1}]
     assert "+2.00%" in (tmp_path / "README.md").read_text(encoding="utf-8")
     assert "path" not in summary["latest"]["cn"][0]
+
+
+
+def test_track_record_workflow_force_stages_saved_runs():
+    workflow = Path(__file__).resolve().parents[1] / ".github" / "workflows" / "track-record.yml"
+    content = workflow.read_text(encoding="utf-8")
+
+    assert "find data/runs -type f -name '*.json'" in content
+    assert "xargs -0 -r git add -f --" in content
